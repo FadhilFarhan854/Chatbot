@@ -6,7 +6,7 @@ interface ProfileProps {
     togleProfile:() => void
 }
 
-const Profile:React.FC<ProfileProps> = ({ togleProfile }) =>{
+const ProfileAdmin:React.FC<ProfileProps> = ({ togleProfile }) =>{
 
     return(
         <>
@@ -65,4 +65,4 @@ const Profile:React.FC<ProfileProps> = ({ togleProfile }) =>{
     );
 }
 
-export default Profile;
+export default ProfileAdmin;

@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 export const checkBobot = async (answer: string, question: string): Promise<number> => {
     
     const bobotMap: Map<string, number> = new Map([
@@ -95,4 +97,36 @@ export const getNextQuestion = async (answer: string, question : string): Promis
         return `Error processing the answer. ${error}`;
     }
 };
+
+export const conclude = async (chatHistory: { sender: string; text: string }[]): Promise<string> => {
+    try {
+      // Make a request to your local AI service or OpenAI API to generate a conclusion
+      const response = await fetch('http://localhost:3000/API/openai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: 'system',
+              content: `You are an AI that summarizes or concludes a chat based on the following conversation: ${JSON.stringify(chatHistory)}`,
+            },
+          ],
+          temperature: 0.5, // Adjust creativity level of the response
+          top_p: 1,
+          max_tokens: 150, // Limit the response length
+        }),
+      });
+  
+      // Parse the API response
+      const data = await response.json();
+  
+      // Safely return the generated conclusion
+      return data.choices?.[0]?.message?.content || 'Unable to generate a conclusion.';
+    } catch (error) {
+      console.error('Error generating conclusion:', error);
+      return `Error in generating the conclusion: ${error}`;
+    }
+  };
 

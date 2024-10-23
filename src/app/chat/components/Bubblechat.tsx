@@ -20,7 +20,7 @@ const BubbleChat: React.FC<BubbleChatProps> = ({ messages }) => {
           <div
             className={`max-w-[60%] p-3 text-sm rounded-lg ${
               message.sender === "user"
-                ? "bg-red-500 text-white"
+                ? "bg-[#4EA971] text-white"
                 : "dark:bg-[#2a2b32] bg-[#E0E0E0] dark:text-gray-300 text-gray-900"
             } shadow-sm`}
           >

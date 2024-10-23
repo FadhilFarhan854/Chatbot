@@ -33,12 +33,12 @@ const DarkModeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="w-14 h-[100%] overflow-hidden bg-gray-200  dark:bg-gray-700 rounded-full relative transition-colors duration-300"
+      className="w-14 h-7 overflow-hidden bg-gray-200  dark:bg-gray-700 rounded-full relative transition-colors duration-300"
     >
       <span
         className={`${
           darkMode ? "translate-x-7" : "translate-x-0"
-        } w-7 h-[100%] bg-white dark:bg-gray-800 rounded-full absolute top-0 left-0 transform transition-transform duration-300`}
+        } w-7 h-7 bg-[#70d195] rounded-full absolute top-0 left-0 transform transition-transform duration-300`}
       />
     </button>
   );
