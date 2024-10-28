@@ -32,14 +32,7 @@ const ProfileAdmin:React.FC<ProfileProps> = ({ togleProfile }) =>{
                                 <img src="/icons/profile.png" className="dark:invert group-hover:invert h-5" alt=""/>
                                 <p className="">Profile</p>
                             </a>
-                            <a href="" className="p-1 py-2 flex items-center gap-2 rounded-sm hover:bg-[#70d195] dark:hover:bg-[#2a2b32] hover:shadow-sm dark:hover:text-green-200 hover:text-white group hover:shadow-green-200 duration-100">
-                                <img src="/icons/clipboard.png" className="dark:invert group-hover:invert h-5" alt=""/>
-                                <p className="">List Wawancara</p>
-                            </a>
-                            <a href="" className="p-1 py-2 flex items-center gap-2 rounded-sm hover:bg-[#70d195] dark:hover:bg-[#2a2b32] hover:shadow-sm dark:hover:text-green-200 hover:text-white group hover:shadow-green-200 duration-100">
-                                <img src="/icons/result.png" className="dark:invert group-hover:invert h-5" alt=""/>
-                                <p className="">Hasil</p>
-                            </a>
+                            
                             <div className="p-1 py-2 flex items-center gap-2 justify-between ">
                                 <div className="flex gap-2 ">
                                     <img src="/icons/night-mode.png" className="dark:invert group-hover:invert h-5" alt=""/>
