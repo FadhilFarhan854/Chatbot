@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 
-interface Detailprops{
+interface DetailInterview{
     detailprops : () => void
     id: string;
     companyName: string;
@@ -12,7 +12,7 @@ interface Detailprops{
     listPertanyaan:string[];
 }
 
-const Detailpopup:React.FC<Detailprops> = ({detailprops, id, companyName, alamat, bidang, startDate, deadline, listPertanyaan}) => {
+export const Detailpopup:React.FC<DetailInterview> = ({detailprops, id, companyName, alamat, bidang, startDate, deadline, listPertanyaan}) => {
     
 
     return(
@@ -75,4 +75,63 @@ const Detailpopup:React.FC<Detailprops> = ({detailprops, id, companyName, alamat
     )
 }
 
-export default Detailpopup;
+interface detailPerusahaan{
+    detailprops : () => void
+    id: string;
+    companyName: string;
+    alamat: string;
+    startMagang: string;
+    selesaiMagang: string;
+    
+}
+
+export const DetailPerusahaan:React.FC<detailPerusahaan> = ({detailprops, id, companyName, alamat, startMagang,selesaiMagang}) => {
+    
+
+    return(
+        <> 
+        <section className="w-full h-full flex justify-center absolute  items-center text-black dark:text-white " >
+            
+            <div className="h-96 p-3 md:w-[40lvw]  dark:bg-[#3f3f3f7e] backdrop-blur-md rounded-xl dark:border-white border-2 flex flex-col gap-3">
+                <div className="pb-7 overflow-y-scroll scrollbar-hide ">
+                    <div className="flex w-full justify-between font-bold text-sm md:text-lg relative">
+                        <p className="w-full border-b-2">Detail :</p>
+                    </div>
+                    <div className="pb-3 flex flex-col gap-2">
+                        <div>
+                            <p className="text-[#939393] dark:text-[#c0c0c0] font-bold">id :</p>
+                            <p>{id}</p>
+                        </div>
+                        <div>
+                            <p className="text-[#939393] dark:text-[#c0c0c0] font-bold">Nama Perusahaan :</p>
+                            <p>{companyName}</p>
+                        </div>
+                        <div>
+                            <p className="text-[#939393] dark:text-[#c0c0c0] font-bold">Alamat :</p>
+                            <p>{alamat}</p>
+                        </div>
+                        <div>
+                            <p className="text-[#939393] dark:text-[#c0c0c0] font-bold">Tanggal Mulai :</p>
+                            <p>{startMagang}</p>
+                        </div>
+                        <div>
+                            <p className="text-[#939393] dark:text-[#c0c0c0] font-bold">Deadline Pendaftaran :</p>
+                            <p>{selesaiMagang}</p>
+                        </div>
+                       
+                    </div>
+                </div>
+            
+                <div className="w-full flex gap-3 justify-end fixed bottom-3 right-3 ">
+                    <button onClick={detailprops} className=" bg-[#359be5] px-3 py-2 hover:bg-[#86c2ed] flex justify-center text-xs md:text-sm font-semibold items-center rounded-lg ">Close</button>
+                    <button onClick={detailprops} className=" bg-[#4EA971] px-3 py-2 hover:bg-[#72d799] flex justify-center text-xs md:text-sm font-semibold items-center rounded-lg ">Update</button>
+                </div>
+            </div>
+
+        </section>
+        </>
+    )
+}
+
+
+

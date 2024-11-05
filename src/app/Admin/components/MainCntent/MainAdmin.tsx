@@ -16,9 +16,6 @@ const DashboardAdmin = () => {
                     </p>
                 </div>
                 
-                <button className="px-2 py-2 bg-[#4EA971] font-bold rounded-lg text-xs md:text-sm">
-                    Add Company
-                </button>
             </div>
             <div className="mt-3 md:p-4 gap-2 md:gap-4 overflow-hidden pb-5 w-full h-full dark:bg-[#1e1f24] bg-[#ffffff] bg-border-2 border-[#232429] rounded-xl flex flex-col">
                 <div className="w-full h-[50%] flex flex-col">

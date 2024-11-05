@@ -1,6 +1,5 @@
 "use client";
 
-
 import SidebarAdmin from "./components/SidebarAdmin";
 import React from "react";
 import { Statistic1 } from "./components/Statistic";
@@ -9,7 +8,10 @@ import DashboardAdmin from "./components/MainCntent/MainAdmin";
 import ProfileAdmin from "./components/ProfileAdmin";
 import CompanyAdmin from "./components/MainCntent/CompanyPage";
 import CompanyApproval from "./components/MainCntent/CompanyApproval";
-import InterviewApproval from "./components/MainCntent/InterviewApproval";
+import InterviewApproval from "./components/MainCntent/InterviewList";
+import BankSoal from "./components/MainCntent/BankSoal";
+import InterviewTemplate from "./components/MainCntent/InterviewTemplate";
+import BidangMagangContent from "./components/MainCntent/RoleControl";
 
    
 const AdminPage = () =>{
@@ -36,7 +38,10 @@ const AdminPage = () =>{
                     {selectedPage === "Dashboard" && <DashboardAdmin />}
                     {selectedPage === "CompanyControl" && <CompanyAdmin />}
                     {selectedPage === "CApproval" && <CompanyApproval />}
-                    {selectedPage === "InterviewApproval" && <InterviewApproval />}
+                    {selectedPage === "ListWawancara" && <InterviewApproval />}
+                    {selectedPage === "BankSoal" && <BankSoal />}
+                    {selectedPage === "TemplateWawancara" && <InterviewTemplate />}
+                    {selectedPage === "BidangMagang" && <BidangMagangContent />}
                     {/* Add other components as needed based on `selectedPage` */}
                     
                 </div>

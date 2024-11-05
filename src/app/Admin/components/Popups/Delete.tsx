@@ -5,7 +5,7 @@ import React from "react";
 interface Deleteprops{
     deleteprops:() => void
     companyName: string;
-    startDate: String;
+    startDate: string;
     deadline: string;
 }
 
