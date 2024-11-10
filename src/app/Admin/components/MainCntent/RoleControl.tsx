@@ -51,15 +51,15 @@ const BidangMagangContent = () => {
         <section className="w-full h-full relative flex flex-col py-2 md:p-4 text-md text-black dark:text-white">
             <div className="flex justify-between items-center">
                 <div className="flex-col">
-                    <p className="font-bold text-sm md:text-base">Question Bank</p>
+                    <p className="font-bold text-sm md:text-base">Intenship Field</p>
                     <p className="text-[#939393] dark:text-[#c0c0c0] text-xs md:text-sm" >
-                        Control all the question here
+                        Control all Internship Field Based on Study Program
                     </p>
                 </div>
                 
                 <div className="gap-2 flex">
                     <button onClick={()=>{toggleAdd()}} className="px-2 py-2 bg-[#4EA971] font-bold rounded-lg text-xs md:text-sm">
-                        Add Role
+                        Add Field
                     </button>
                     <button className="px-2 py-2 bg-[#4EA971] font-bold rounded-lg text-xs md:text-sm flex gap-1">
                         <img src="./icons/filter.png" className="w-5 invert" alt=""/>
@@ -74,7 +74,7 @@ const BidangMagangContent = () => {
                     <li className="w-full text-[#62d28d]  font-semibold border-b-2 text-base md:text-lg border-black dark:border-white flex">
                         <p className="w-[5%] text-center flex justify-center items-center ">No</p>   
                         <p className="w-[10%] text-center flex justify-center items-center ">ID</p>   
-                        <p className="w-[25%] text-center flex justify-center items-center ">nama Bidang</p>
+                        <p className="w-[25%] text-center flex justify-center items-center ">Nama Bidang</p>
                         <p className="w-[35%] text-center flex justify-center items-center ">Prodi </p>
                         
                        

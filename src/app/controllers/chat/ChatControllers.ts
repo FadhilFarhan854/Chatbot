@@ -128,5 +128,5 @@ export const conclude = async (chatHistory: { sender: string; text: string }[]):
       console.error('Error generating conclusion:', error);
       return `Error in generating the conclusion: ${error}`;
     }
-  };
-
+  
+};

@@ -58,8 +58,6 @@ const AddBidangPopup: React.FC<AddBidang> = ({ addBidangAppear}) => {
                             placeholder="Bidang (e.g Fronted Developer)"
                         />
                     
-                  
-                    
                 </div>
                 <div className="w-full flex gap-3 justify-end  bottom-3 right-3 ">
                     <button onClick={addBidangAppear} className=" bg-[#359be5] px-3 py-2 hover:bg-[#86c2ed] flex justify-center text-xs md:text-sm font-semibold items-center rounded-lg ">Cancel</button>

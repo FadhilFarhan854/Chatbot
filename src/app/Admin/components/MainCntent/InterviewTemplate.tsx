@@ -47,9 +47,9 @@ const InterviewTemplate = () => {
         <section className="w-full h-full relative flex flex-col py-2 md:p-4 text-md text-black dark:text-white">
             <div className="flex justify-between  items-center">
                 <div className="flex-col">
-                    <p className="font-bold text-sm md:text-base">Company Control</p>
+                    <p className="font-bold text-sm md:text-base">Intereview Template</p>
                     <p className="text-[#939393] dark:text-[#c0c0c0] text-xs md:text-sm" >
-                        Give admin full control to all registered company
+                        Make Interview Template for All Company
                     </p>
                 </div>
                 

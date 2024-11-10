@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import QuestionListPopup from "./QuestionList";
+import bidangDummy from "../data/dataBidang";
 
 interface AddSoal {
     addSoalAppear: () => void;
@@ -9,24 +10,21 @@ interface AddSoal {
 
 const AddSoalPopup: React.FC<AddSoal> = ({ addSoalAppear}) => {
     const [bidang, setBidang] = useState("");
-    const [isCustomBidang, setIsCustomBidang] = useState(false);
+    const [prodiSelected, setProdiSelected] = useState("");
     const [pertanyaan, setPertanyaan] = useState("");
     
 
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleProdiChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = e.target.value;
-
-        if (selectedValue === "custom") {
-            setIsCustomBidang(true);  
-            setBidang("");  
-        } else {
-            setIsCustomBidang(false); 
-            setBidang(selectedValue);  
-        }
+        setProdiSelected(selectedValue);  
+    };
+    const handleBidangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = e.target.value;
+        setBidang(selectedValue);  
     };
   
-
+    const filteredBidang = bidangDummy.filter((bidang)=>(bidang.prodi === prodiSelected))
 
     return (
         <section className="w-full h-full flex justify-center absolute items-center text-black dark:text-white">
@@ -37,31 +35,32 @@ const AddSoalPopup: React.FC<AddSoal> = ({ addSoalAppear}) => {
                 <div>
                     <p className="text-[#939393] dark:text-[#c0c0c0]">Creator :</p>
                     <p>Admin 1</p>
+                    <p className="text-[#939393] dark:text-[#c0c0c0]">Prodi :</p>
+                    <select className="bg-transparent" value={prodiSelected} onChange={handleProdiChange}>
+                        <option className="bg-[#8383838f] text-black" value="D3 Sistem Informasi">D3 Sistem Informasi</option>
+                        <option className="bg-[#8383838f] text-black" value="D3 Rekayasa Perangkat Lunak Aplikasi">D3 Rekayasa Perangkat Lunak Aplikasi</option>
+                        <option className="bg-[#8383838f] text-black" value="D3 Teknologi Komputer">D3 Teknologi Komputer</option>
+                        <option className="bg-[#8383838f] text-black" value="D3 Teknologi Telekomunikasi">D3 Teknologi Telekomunikasi</option>
+                        <option className="bg-[#8383838f] text-black" value="D4 Sistem Multimedia">D4 Sistem Multimedia</option>
+                        <option className="bg-[#8383838f] text-black" value="D4 Teknologi Rekayasa Internet">D4 Teknologi Rekayasa Internet</option>
+                        <option className="bg-[#8383838f] text-black" value="D4 Teknik Informatika">D4 Teknik Informatika</option>
+                    </select>
                     <p className="text-[#939393] dark:text-[#c0c0c0]">Bidang :</p>
-                    <select className="bg-transparent" value={isCustomBidang ? "custom" : bidang} onChange={handleSelectChange}>
-                        <option className="bg-[#8383838f] text-black" value="Frontend Developer">Frontend Developer</option>
-                        <option className="bg-[#8383838f] text-black" value="Backend Developer">Backend Developer</option>
-                        <option className="bg-[#8383838f] text-black" value="Full Stack Developer">Full Stack Developer</option>
-                        <option className="bg-[#8383838f] text-black" value="Designer">Designer</option>
-                        <option className="bg-[#8383838f] text-black" value="Project Manager">Project Manager</option>
-                        <option className="bg-[#8383838f] text-black" value="custom">Lainnya</option>
+                    <select className="bg-transparent" value={bidang} onChange={handleBidangChange}>
+                        {
+                            filteredBidang.map((filteredrole)=>(
+                                <option className="bg-[#8383838f] text-black" value={filteredrole.bidang}>{filteredrole.bidang}</option>
+                            ))
+                        }
+                        
                     </select>
                     
-                    {isCustomBidang && (
-                        <input
-                            type="text"
-                            value={bidang}
-                            onChange={(e) => setBidang(e.target.value)}
-                            className="bg-[#8383838f] text-white p-2 rounded-md w-full mt-3"
-                            placeholder="Masukkan bidang custom"
-                        />
-                    )}
 
                     <p className="text-[#939393] dark:text-[#c0c0c0]">Pertanyaan:</p>
                     <input
                             type="text"
-                            value={bidang}
-                            onChange={(e) => setBidang(e.target.value)}
+                            value={pertanyaan}
+                            onChange={(e) => setPertanyaan(e.target.value)}
                             className="bg-[#8383838f] text-white p-2 rounded-md w-full mt-3"
                             placeholder="Masukkan pertanyaan"
                         />
