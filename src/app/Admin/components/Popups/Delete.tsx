@@ -16,7 +16,7 @@ const Deletepopup:React.FC<Deleteprops> = ({deleteprops, companyName, startDate,
         <>
             <section className="w-full h-full flex justify-center absolute items-center text-black dark:text-white  ">
 
-                <div className=" p-3 md:w-[40lvw]  dark:bg-[#0000007e] backdrop-blur-md rounded-xl dark:border-white border-2 flex flex-col gap-3">
+                <div className="c">
                     <div className="flex w-full justify-between font-bold text-sm md:text-lg">
                         <p>Apakah anda yakin ingin menghapus :</p>
                     </div>

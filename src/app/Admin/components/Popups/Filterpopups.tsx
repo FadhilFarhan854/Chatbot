@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import bidangDummy from "../data/dataBidang";
+import bidangDummy from "../../../data/dataBidang";
 import { useState } from "react";
 
 interface Filterpopup{

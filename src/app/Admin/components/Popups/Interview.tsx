@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import QuestionListPopup from "./QuestionList";
-import bidangDummy from "../data/dataBidang";
+import bidangDummy from "../../../data/dataBidang";
 
 interface InterviewProps {
     interviewprops: () => void;

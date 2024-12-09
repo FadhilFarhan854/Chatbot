@@ -2,7 +2,7 @@
 import { useState } from "react";
 import EditPopup from "../Popups/edit";
 import AddSoalPopup from "../Popups/AddSoal";
-import bidangDummy from "../data/dataBidang";
+import bidangDummy from "../../../data/dataBidang";
 
 
 const BankSoal = () => {

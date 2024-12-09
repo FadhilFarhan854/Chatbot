@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ChatSection from "../components/Chat";
 import Profile from "../components/Profile";
 import Sidebar from "../components/Sidebar";
+import ChatSection2 from '../components/Chat2';
 
 const ChatPage = ({ params }: { params: { id: string, NIM: string } }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,7 +22,7 @@ const ChatPage = ({ params }: { params: { id: string, NIM: string } }) => {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col h-full w-full md:h-full">
-                <ChatSection toggleSidebar={toggleSidebar}  toggleProfile={toggleProfile}/>
+                <ChatSection2 toggleSidebar={toggleSidebar}  toggleProfile={toggleProfile}/>
             </div>
 
             {/* Profile component (if you're using it) */}

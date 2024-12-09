@@ -3,8 +3,10 @@ import React from "react";
 import { useState } from "react";
 import { Detailpopup } from "../Popups/Detail";
 import InterviewPopup from "../Popups/Interview";
+import { SourceTextModule } from "vm";
 
 const InterviewApproval = () => {
+
     
     const [isDeleteOpen, setisDeleteOpen] = useState(false);
     const [isDetailOpen, setisDetailOpen] = useState(false);
