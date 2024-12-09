@@ -58,7 +58,7 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
               setCurrentQuestion(nextQuestion);
               setFollowUpCount(followUpCount + 1);
             //   const scores = await score(inputSet[questionIndex].kriteria, inputSet[questionIndex].posisi,userAnswer, currentQuestion)
-            //   setlastScore(scores)
+               //setlastScore(0)
               setChatHistory((prev) => [
                   ...prev,
                   { sender: "bot", text: nextQuestion },
@@ -70,8 +70,13 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
               //tambahkan history kriteria        
           } else if (questionIndex < inputSet.length - 1) {
               //nilai history kriteria
-              const score = await scoreChatKriteria(chatHistoryKriteria, inputSet[questionIndex].kriteria, inputSet[questionIndex].posisi);
-              
+            
+              const scoreResult = await scoreChatKriteria(
+                chatHistoryKriteria,
+                inputSet[questionIndex].kriteria,
+                inputSet[questionIndex].posisi
+            );
+            setlastScore(scoreResult);
               //reset history kriteria
               setChatHistoryKriteria([]);
 
@@ -82,7 +87,7 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
               
               setChatHistory((prev) => [
                   ...prev,
-                  {sender: "bot", text: `${score}`},
+                  {sender: "bot", text: `${lastScore} ${scoreResult}`},
                   { sender: "bot", text: nextQuestion },
                  
               ]);
