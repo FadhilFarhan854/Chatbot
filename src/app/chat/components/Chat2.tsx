@@ -87,7 +87,7 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
               
               setChatHistory((prev) => [
                   ...prev,
-                  {sender: "bot", text: `${lastScore} ${scoreResult}`},
+                  {sender: "bot", text: ` ${scoreResult}`},
                   { sender: "bot", text: nextQuestion },
                  
               ]);
