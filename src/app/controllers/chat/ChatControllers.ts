@@ -132,13 +132,19 @@ export const conclude = async (chatHistory: { sender: string; text: string }[]):
 };
 
 
-export const score = async (kriteria: string, posisi:string, jawaban: string, question:string): Promise<number> => {
-    
-
+export const score = async (
+    kriteria: string,
+    posisi: string,
+    jawaban: string,
+    question: string
+): Promise<number> => {
+    // Definisikan pesan sistem dengan panduan yang lebih ketat.
     const systemMessage = `
-   You are an professional HRD that scores candidates answer (${jawaban}) based on criteria(${kriteria}) and make sure score the relevance beetween answer and position(${posisi}). the interview question is ${question}  and makesure only return the score on scale 0 - 100, example 100 , 75, 87.
+        Kriteria: ${kriteria}
+        Posisi magang: ${posisi}
+        Pertanyaan: ${question}
     `;
-    
+
     try {
         const response = await fetch('http://localhost:3000/API/openai', {
             method: 'POST',
@@ -146,44 +152,48 @@ export const score = async (kriteria: string, posisi:string, jawaban: string, qu
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                model: "ft:gpt-4o-2024-08-06:personal:test:AcoQmmPU", // Pastikan model yang digunakan sesuai.
                 messages: [
                     { role: "system", content: systemMessage },
                     { role: "user", content: jawaban },
                 ],
-                temperature: 0,
-                top_p: 1,
-                token: 200
+                temperature: 0, // Jawaban deterministik.
+                top_p: 1, // Tidak terlalu eksploratif.
+                max_tokens: 10, // Output cukup pendek karena hanya angka.
             }),
         });
 
         if (!response.ok) {
             const errorMessage = await response.text();
             console.error("Error details:", errorMessage);
-            throw new Error(`Network response was not ok: ${response.status} - ${errorMessage}`);
+            throw new Error(
+                `Network response was not ok: ${response.status} - ${errorMessage}`
+            );
         }
 
         const data = await response.json();
 
         if (!data.choices || data.choices.length === 0) {
-            return 0; // Return 0 if no choices are available.
+            console.error("No valid choices returned from OpenAI API");
+            return 0; // Jika respons kosong, kembalikan skor 0.
         }
 
-        const totalScoreString = data.choices[0].message?.content;
-        
-        // Parse the string to a number
-        const totalScore = parseFloat(totalScoreString);
-        
-        if (isNaN(totalScore)) {
+        const totalScoreString = data.choices[0].message?.content.trim();
+
+        // Validasi bahwa respons hanya berupa angka dalam rentang 0-9.
+        const totalScore = parseInt(totalScoreString, 10);
+        if (isNaN(totalScore) || totalScore < 0 || totalScore > 9) {
             console.error("Invalid score returned:", totalScoreString);
-            return 0; // Return 0 if the parsed score is NaN.
+            return 0; // Kembalikan 0 jika skor tidak valid.
         }
 
         return totalScore;
     } catch (error) {
         console.error("Error in OpenAI API:", error);
-        return 0; // Return 0 in case of an error.
+        return 0; // Kembalikan 0 jika terjadi kesalahan.
     }
 };
+
 // export const scoreChatKriteria = async (chat:{}[], kriteria:string, posisi:string): Promise<number> => {
     
 
@@ -250,19 +260,10 @@ export const scoreChatKriteria = async (chat: { sender: string; text: string }[]
     - Chat History:
     ${chatContext}
 
-    Your task is to score the candidate's responses based on:
-    1. Relevance to the job position
-    2. Depth of responses related to the ${kriteria} criteria
-    3. Overall quality of communication
+    if the criteria is hobby or passion Your task is to score the candidate's responses based on relevance to job position, 
+    if criteria is not hobby or passion, just score theuser answer
 
-    Provide a score between 0-100, where:
-    - 0-30: Poor performance
-    - 31-50: Below average
-    - 51-70: Average
-    - 71-85: Good
-    - 86-100: Excellent
-
-    Return ONLY the numeric score.
+    Return ONLY the numeric score from 1 - 10, example : 1 , 3 ,8.
     `;
     
     try {

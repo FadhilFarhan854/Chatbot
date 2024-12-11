@@ -14,7 +14,7 @@ export const POST = async (req: Request) => {
         const response = await axios.post(
             'https://api.openai.com/v1/chat/completions',
             {
-                model: 'gpt-4-turbo',
+                model: 'ft:gpt-4o-2024-08-06:personal:test:AcoQmmPU',
                 messages: messages,  // Sending the entire array of messages directly
             },
             {

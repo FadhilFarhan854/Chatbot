@@ -25,8 +25,8 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
 
 
   const inputSet:{posisi:string ,kriteria:string, pertanyaan:string}[] =[
-    {posisi : "Frontend Developer",kriteria:"hobby", pertanyaan:"apakah aktivitas yang paling senang kamu jalani ?"},
-    {posisi:"Frontend Developer",kriteria:"kepemimpinan", pertanyaan:"apakah kamu pernah menerapkan kepempinan dalam berorganisai ?"},
+    {posisi : "Frontend Developer",kriteria:"hobby", pertanyaan:"apa hobimu ?"},
+    {posisi:"Frontend Developer",kriteria:"kepemimpinan", pertanyaan:"bagimana pengalamanmu dalam mempimpin?"},
 ]
 
   // Create a ref for the chat container
@@ -47,21 +47,22 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
       ]);
 
       setIsLoading(true);
-      const bobot = await checkBobot(userAnswer, currentQuestion);
+      //const bobot = await checkBobot(userAnswer, currentQuestion);
         
-      setLastBobot(bobot);
+      //setLastBobot(bobot);
      
       try {
-          if (followUpCount < 2 && bobot > 0.3) {
+          if (followUpCount < 2 ) {
               const nextQuestion = await getNextQuestion(userAnswer, currentQuestion);
               if (!nextQuestion) throw new Error("No question received.");
               setCurrentQuestion(nextQuestion);
               setFollowUpCount(followUpCount + 1);
-            //   const scores = await score(inputSet[questionIndex].kriteria, inputSet[questionIndex].posisi,userAnswer, currentQuestion)
-               //setlastScore(0)
+              const scores = await score(inputSet[questionIndex].kriteria, inputSet[questionIndex].posisi,userAnswer, currentQuestion)
+              
               setChatHistory((prev) => [
                   ...prev,
-                  { sender: "bot", text: nextQuestion },
+                  { sender: "bot", text: 'nilai relevansi : ' + scores },
+                  { sender: "bot", text: nextQuestion + scores },
               ]);    
               setChatHistoryKriteria((prev) => [
                   ...prev,
@@ -94,9 +95,15 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
 
               //masukan history kriteria yg baru
           } else {
+            const scoreResult = await scoreChatKriteria(
+                chatHistoryKriteria,
+                inputSet[questionIndex].kriteria,
+                inputSet[questionIndex].posisi
+            );
+          
               const conclusion = await conclude(chatHistory)
             
-              setChatHistory((prev) => [...prev,  { sender: "bot", text: conclusion  },  ]);
+              setChatHistory((prev) => [...prev,  { sender: "bot", text: conclusion  }, {sender: "bot", text:` ${scoreResult}`}  ]);
           
               setFollowUpCount(0);
               setQuestionIndex(0);
