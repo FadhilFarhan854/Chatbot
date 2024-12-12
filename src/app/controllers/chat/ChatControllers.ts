@@ -143,6 +143,7 @@ export const score = async (
         Kriteria: ${kriteria}
         Posisi magang: ${posisi}
         Pertanyaan: ${question}
+    
     `;
 
     try {
@@ -152,14 +153,14 @@ export const score = async (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: "ft:gpt-4o-2024-08-06:personal:test:AcoQmmPU", // Pastikan model yang digunakan sesuai.
+                model: "ft:gpt-4o-2024-08-06:personal:test3:AdHEjRj8", 
                 messages: [
                     { role: "system", content: systemMessage },
                     { role: "user", content: jawaban },
                 ],
-                temperature: 0, // Jawaban deterministik.
-                top_p: 1, // Tidak terlalu eksploratif.
-                max_tokens: 10, // Output cukup pendek karena hanya angka.
+                temperature: 0,
+                top_p: 1, 
+                max_tokens: 10, 
             }),
         });
 

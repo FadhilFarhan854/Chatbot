@@ -25,7 +25,7 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
 
 
   const inputSet:{posisi:string ,kriteria:string, pertanyaan:string}[] =[
-    {posisi : "Frontend Developer",kriteria:"hobby", pertanyaan:"apa hobimu ?"},
+    {posisi : "frontend feveloper",kriteria:"hobi", pertanyaan:"apa hobimu ?"},
     {posisi:"Frontend Developer",kriteria:"kepemimpinan", pertanyaan:"bagimana pengalamanmu dalam mempimpin?"},
 ]
 
@@ -47,7 +47,8 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
       ]);
 
       setIsLoading(true);
-      //const bobot = await checkBobot(userAnswer, currentQuestion);
+      
+     
         
       //setLastBobot(bobot);
      
@@ -62,7 +63,7 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
               setChatHistory((prev) => [
                   ...prev,
                   { sender: "bot", text: 'nilai relevansi : ' + scores },
-                  { sender: "bot", text: nextQuestion + scores },
+                  { sender: "bot", text: nextQuestion },
               ]);    
               setChatHistoryKriteria((prev) => [
                   ...prev,
@@ -117,7 +118,6 @@ const ChatSection2:React.FC<ChatSectionProps> = ({ toggleSidebar, toggleProfile 
       }
   };
 
-  // Effect to scroll to the bottom of the chat container whenever chatHistory changes
   useEffect(() => {
       if (chatContainerRef.current) {
           chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
